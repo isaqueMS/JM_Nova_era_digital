@@ -1,0 +1,52 @@
+{
+  "logins": [
+    {
+      "id": 56899,
+      "login_type": "internet",
+      "authentication_type": "pppoe",
+      "login": "003@jmlinkdigital.com.br",
+      "password": "12345",
+      "status": "active",
+      "access_status": "access_active",
+      "freeze_access_status": false,
+      "customer_id": 1993147,
+      "plan_id": 123885,
+      "server_id": 24372,
+      "contract_id": 56649,
+      "contract_item_id": 67772,
+      "customer": {
+        "id": 1993147,
+        "full_name": "Alberico Pereira Bezerra "
+      },
+      "contract": {
+        "id": 56649,
+        "name": "Contrato do Cliente ID 1993147",
+        "status": "active"
+      },
+      "server": {
+        "id": 24372,
+        "name": "CONCENTRADOR JM ",
+        "hash_server": "9BCEA76CDE20E170CC859ABF3C7248E2"
+      },
+      "plan": {
+        "id": 123885,
+        "name": "100 MEGA",
+        "value": "80.0"
+      },
+      "onu": {
+        "id": 181917,
+        "serial_number": "1c-ef-03-b4-c3-e6",
+        "olt_id": 494
+      }
+    }
+  ],
+  "meta": {
+    "pages": {
+      "current_page": 1,
+      "next_page": null,
+      "prev_page": null,
+      "total_pages": 1,
+      "total_count": 1
+    }
+  }
+}

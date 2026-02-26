@@ -1,0 +1,35 @@
+{
+  "id": 56895,
+  "login_type": "internet",
+  "authentication_type": "pppoe",
+  "login": "abelmartins@flash.com.br",
+  "password": "12345",
+  "status": "disabled",
+  "access_status": "access_blocked",
+  "freeze_access_status": false,
+  "customer_id": 2069653,
+  "plan_id": 123882,
+  "server_id": 24372,
+  "contract_id": 56645,
+  "contract_item_id": 67768,
+  "customer": {
+    "id": 2069653,
+    "full_name": "Abel Martins Souza Junior"
+  },
+  "contract": {
+    "id": 56645,
+    "name": "Contrato do Cliente ID 2069653",
+    "status": "canceled"
+  },
+  "server": {
+    "id": 24372,
+    "name": "CONCENTRADOR JM ",
+    "hash_server": "9BCEA76CDE20E170CC859ABF3C7248E2"
+  },
+  "plan": {
+    "id": 123882,
+    "name": "70 MEGA ",
+    "value": "60.0"
+  },
+  "onu": null
+}

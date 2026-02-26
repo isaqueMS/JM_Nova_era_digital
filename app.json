@@ -1,14 +1,13 @@
 {
   "expo": {
-    "name": "jm-nova-era",
+    "name": "Sheik Celular",
     "slug": "jm-nova-era",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -17,13 +16,19 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.isaquem.jmnovaera"
     },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    }
+    "web": {},
+    "extra": {
+      "eas": {
+        "projectId": "383460c7-bed0-41d7-a1cf-cf0e06916d61"
+      }
+    },
+    "plugins": [
+      "expo-secure-store"
+    ]
   }
 }

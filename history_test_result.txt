@@ -1,0 +1,6 @@
+--- TEST HISTORY AND USAGE ---
+History by customer_id (1993147): 0
+Usage by customer_id (1993147): 0
+History by login_id (56899): 0
+Usage by login_id (56899): 0
+History via /logins/56899/conn_histories: FAILED (404)

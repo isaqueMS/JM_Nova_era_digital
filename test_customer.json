@@ -1,0 +1,109 @@
+{
+  "customer": {
+    "id": 1993942,
+    "server_id": null,
+    "plan_id": null,
+    "customer_group_id": 18371,
+    "customer_contract_ids": [
+      1202374
+    ],
+    "onu_ids": [
+      162459
+    ],
+    "contract_ids": [
+      56654
+    ],
+    "contract_template_id": 1087,
+    "default_contract_template_id": 1087,
+    "full_name": "Analice Leal Costa",
+    "login": null,
+    "password": null,
+    "email": "analice.la@hotmail.com",
+    "authentication_type": "pppoe",
+    "birth_date": "1974-06-05",
+    "person_type": "Física",
+    "state_registration": null,
+    "rg": null,
+    "cpf_cnpj": "89943856572",
+    "due_day": null,
+    "phone_number": null,
+    "cell_phone_number_1": "75981167274",
+    "cell_phone_number_2": null,
+    "cell_phone_number_3": null,
+    "cell_phone_number_4": null,
+    "zip_code": "41260-015",
+    "street": "Rua Nova Cidade II",
+    "number": "SN",
+    "neighborhood": "Canabrava",
+    "state": "BA",
+    "city": "Salvador",
+    "complement": "Condominio Nova Cidade II Bl 33 apt 304",
+    "created_at": "2023-05-07T22:23:44.000Z",
+    "updated_at": "2025-08-25T18:26:40.000Z",
+    "financial_status": "L",
+    "msg_payment_mk": "L",
+    "allow_password_change": false,
+    "monthly_discount": null,
+    "monthly_discount_until_due_date": null,
+    "monthly_increase": null,
+    "automatic_monthly": true,
+    "automatic_lock_message": true,
+    "automatic_pendency_message": true,
+    "days_to_pendency": null,
+    "days_to_lock": null,
+    "subscriber_type": "3",
+    "utilization_type": "4",
+    "free_monthly": false,
+    "status": "Ativo",
+    "mac": null,
+    "ip": null,
+    "ip_pppoe": null,
+    "pre_registrate": false,
+    "observation": "CLIENTE MIGROU PARA O PLANO DE 35 MEGA PAGANDO 60,00 CLIENTE MIGROU DIA 25/09/23 A CONTAR A PARTIR DA PROXIMA FATURA ",
+    "additional_observation": null,
+    "registered_by": "jmlinkdigital@gmail.com",
+    "modified_by": "sistema",
+    "date_pending": "2024-05-06T04:09:18.000Z",
+    "date_lock": "2024-07-15T04:40:22.000Z",
+    "date_disabled": null,
+    "customer_since": "2022-02-26",
+    "latitude": -12.9271446245,
+    "longitude": -38.4190330951,
+    "name": null,
+    "user": null,
+    "uses_contract_structure": true,
+    "server": null,
+    "plan": null,
+    "customer_group": {
+      "id": 18371,
+      "name": "COND. NOVA CIDADE "
+    },
+    "customer_contracts": [
+      {
+        "id": 1202374,
+        "contract_template_id": 1087,
+        "onu_id": null
+      }
+    ],
+    "contracts": [
+      {
+        "id": 56654,
+        "name": "Contrato do Cliente ID 1993942",
+        "status": "active",
+        "financial_status": "in_day",
+        "access_status": "access_active",
+        "activation_status": "done",
+        "total": "60.0",
+        "repeat_on": 5
+      }
+    ],
+    "logins": [
+      {
+        "id": 56904,
+        "login": "analice@jmlinkdigital.com.br",
+        "password": "12345",
+        "status": "active"
+      }
+    ]
+  }
+}

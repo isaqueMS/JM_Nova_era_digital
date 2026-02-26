@@ -1,0 +1,9 @@
+Starting MikWeb API scan for history and usage endpoints...
+[OK] 200 - /logs
+     Keys: logs,meta
+     Rows: 20
+     Sample: {"id":303565821,"type_user":"SISTEMA","user":"sistema","date_event":"2026-02-26T03:26:33.000Z","hist
+[OK] 200 - /logs?customer_id=1993147
+     Keys: logs,meta
+     Rows: 20
+     Sample: {"id":303549154,"type_user":"API","user":"desenvolvedor - 5C8MHVWUYI","date_event":"2026-02-26T00:00

@@ -1,0 +1,770 @@
+{
+  "logins": [
+    {
+      "id": 56899,
+      "login_type": "internet",
+      "authentication_type": "pppoe",
+      "login": "003@jmlinkdigital.com.br",
+      "password": "12345",
+      "status": "active",
+      "access_status": "access_active",
+      "freeze_access_status": false,
+      "customer_id": 1993147,
+      "plan_id": 123885,
+      "server_id": 24372,
+      "contract_id": 56649,
+      "contract_item_id": 67772,
+      "customer": {
+        "id": 1993147,
+        "full_name": "Alberico Pereira Bezerra "
+      },
+      "contract": {
+        "id": 56649,
+        "name": "Contrato do Cliente ID 1993147",
+        "status": "active"
+      },
+      "server": {
+        "id": 24372,
+        "name": "CONCENTRADOR JM ",
+        "hash_server": "9BCEA76CDE20E170CC859ABF3C7248E2"
+      },
+      "plan": {
+        "id": 123885,
+        "name": "100 MEGA",
+        "value": "80.0"
+      },
+      "onu": {
+        "id": 181917,
+        "serial_number": "1c-ef-03-b4-c3-e6",
+        "olt_id": 494
+      }
+    },
+    {
+      "id": 56895,
+      "login_type": "internet",
+      "authentication_type": "pppoe",
+      "login": "abelmartins@flash.com.br",
+      "password": "12345",
+      "status": "disabled",
+      "access_status": "access_blocked",
+      "freeze_access_status": false,
+      "customer_id": 2069653,
+      "plan_id": 123882,
+      "server_id": 24372,
+      "contract_id": 56645,
+      "contract_item_id": 67768,
+      "customer": {
+        "id": 2069653,
+        "full_name": "Abel Martins Souza Junior"
+      },
+      "contract": {
+        "id": 56645,
+        "name": "Contrato do Cliente ID 2069653",
+        "status": "canceled"
+      },
+      "server": {
+        "id": 24372,
+        "name": "CONCENTRADOR JM ",
+        "hash_server": "9BCEA76CDE20E170CC859ABF3C7248E2"
+      },
+      "plan": {
+        "id": 123882,
+        "name": "70 MEGA ",
+        "value": "60.0"
+      },
+      "onu": null
+    },
+    {
+      "id": 56897,
+      "login_type": "internet",
+      "authentication_type": "pppoe",
+      "login": "adiliosilva@flash.com.br",
+      "password": "12345",
+      "status": "active",
+      "access_status": "access_active",
+      "freeze_access_status": false,
+      "customer_id": 1993939,
+      "plan_id": 123880,
+      "server_id": 24372,
+      "contract_id": 56647,
+      "contract_item_id": 67770,
+      "customer": {
+        "id": 1993939,
+        "full_name": "Adilio Silva Santos  "
+      },
+      "contract": {
+        "id": 56647,
+        "name": "Contrato do Cliente ID 1993939",
+        "status": "active"
+      },
+      "server": {
+        "id": 24372,
+        "name": "CONCENTRADOR JM ",
+        "hash_server": "9BCEA76CDE20E170CC859ABF3C7248E2"
+      },
+      "plan": {
+        "id": 123880,
+        "name": "50 MEGA",
+        "value": "50.0"
+      },
+      "onu": {
+        "id": 202714,
+        "serial_number": "1c-ef-03-b4-c0-22",
+        "olt_id": 494
+      }
+    },
+    {
+      "id": 56898,
+      "login_type": "internet",
+      "authentication_type": "pppoe",
+      "login": "aelsonsouza@jmlinkdigital.com.br",
+      "password": "12345",
+      "status": "active",
+      "access_status": "access_active",
+      "freeze_access_status": false,
+      "customer_id": 2031651,
+      "plan_id": 123882,
+      "server_id": 24372,
+      "contract_id": 56648,
+      "contract_item_id": 67771,
+      "customer": {
+        "id": 2031651,
+        "full_name": "Aelson Souza dos Santos "
+      },
+      "contract": {
+        "id": 56648,
+        "name": "Contrato do Cliente ID 2031651",
+        "status": "active"
+      },
+      "server": {
+        "id": 24372,
+        "name": "CONCENTRADOR JM ",
+        "hash_server": "9BCEA76CDE20E170CC859ABF3C7248E2"
+      },
+      "plan": {
+        "id": 123882,
+        "name": "70 MEGA ",
+        "value": "60.0"
+      },
+      "onu": {
+        "id": 158981,
+        "serial_number": "1c-ef-03-b4-b7-e2",
+        "olt_id": 494
+      }
+    },
+    {
+      "id": 56900,
+      "login_type": "internet",
+      "authentication_type": "pppoe",
+      "login": "aldacarneiro@flash.com.br",
+      "password": "12345",
+      "status": "active",
+      "access_status": "access_active",
+      "freeze_access_status": false,
+      "customer_id": 1993940,
+      "plan_id": 123882,
+      "server_id": 24372,
+      "contract_id": 56650,
+      "contract_item_id": 67773,
+      "customer": {
+        "id": 1993940,
+        "full_name": "Aldalicia Carneiro"
+      },
+      "contract": {
+        "id": 56650,
+        "name": "Contrato do Cliente ID 1993940",
+        "status": "active"
+      },
+      "server": {
+        "id": 24372,
+        "name": "CONCENTRADOR JM ",
+        "hash_server": "9BCEA76CDE20E170CC859ABF3C7248E2"
+      },
+      "plan": {
+        "id": 123882,
+        "name": "70 MEGA ",
+        "value": "60.0"
+      },
+      "onu": {
+        "id": 146738,
+        "serial_number": "d8-77-8b-3f-c2-59",
+        "olt_id": 494
+      }
+    },
+    {
+      "id": 56901,
+      "login_type": "internet",
+      "authentication_type": "pppoe",
+      "login": "alessandro@flash.com.br",
+      "password": "12345",
+      "status": "active",
+      "access_status": "access_active",
+      "freeze_access_status": false,
+      "customer_id": 1993874,
+      "plan_id": 123884,
+      "server_id": 24372,
+      "contract_id": 56651,
+      "contract_item_id": 67774,
+      "customer": {
+        "id": 1993874,
+        "full_name": "Alessandro Lima Almeida"
+      },
+      "contract": {
+        "id": 56651,
+        "name": "Contrato do Cliente ID 1993874",
+        "status": "active"
+      },
+      "server": {
+        "id": 24372,
+        "name": "CONCENTRADOR JM ",
+        "hash_server": "9BCEA76CDE20E170CC859ABF3C7248E2"
+      },
+      "plan": {
+        "id": 123884,
+        "name": "80 MEGA",
+        "value": "65.0"
+      },
+      "onu": {
+        "id": 146741,
+        "serial_number": "24-fd-0d-57-a5-97",
+        "olt_id": 494
+      }
+    },
+    {
+      "id": 56902,
+      "login_type": "internet",
+      "authentication_type": "pppoe",
+      "login": "alexandre@flash.com.br",
+      "password": "12345",
+      "status": "active",
+      "access_status": "access_active",
+      "freeze_access_status": false,
+      "customer_id": 1993941,
+      "plan_id": 123880,
+      "server_id": 24372,
+      "contract_id": 56652,
+      "contract_item_id": 67775,
+      "customer": {
+        "id": 1993941,
+        "full_name": "Alexandre Ferreira da Costa"
+      },
+      "contract": {
+        "id": 56652,
+        "name": "Contrato do Cliente ID 1993941",
+        "status": "active"
+      },
+      "server": {
+        "id": 24372,
+        "name": "CONCENTRADOR JM ",
+        "hash_server": "9BCEA76CDE20E170CC859ABF3C7248E2"
+      },
+      "plan": {
+        "id": 123880,
+        "name": "50 MEGA",
+        "value": "50.0"
+      },
+      "onu": {
+        "id": 163665,
+        "serial_number": "1c-ef-03-b4-b7-da",
+        "olt_id": 494
+      }
+    },
+    {
+      "id": 56904,
+      "login_type": "internet",
+      "authentication_type": "pppoe",
+      "login": "analice@jmlinkdigital.com.br",
+      "password": "12345",
+      "status": "active",
+      "access_status": "access_active",
+      "freeze_access_status": false,
+      "customer_id": 1993942,
+      "plan_id": 123884,
+      "server_id": 24372,
+      "contract_id": 56654,
+      "contract_item_id": 67777,
+      "customer": {
+        "id": 1993942,
+        "full_name": "Analice Leal Costa"
+      },
+      "contract": {
+        "id": 56654,
+        "name": "Contrato do Cliente ID 1993942",
+        "status": "active"
+      },
+      "server": {
+        "id": 24372,
+        "name": "CONCENTRADOR JM ",
+        "hash_server": "9BCEA76CDE20E170CC859ABF3C7248E2"
+      },
+      "plan": {
+        "id": 123884,
+        "name": "80 MEGA",
+        "value": "65.0"
+      },
+      "onu": {
+        "id": 162459,
+        "serial_number": "1c-ef-03-b4-b7-fa",
+        "olt_id": 494
+      }
+    },
+    {
+      "id": 56905,
+      "login_type": "internet",
+      "authentication_type": "pppoe",
+      "login": "antoniobrito@flash.com.br",
+      "password": "12345",
+      "status": "active",
+      "access_status": "access_active",
+      "freeze_access_status": false,
+      "customer_id": 1993944,
+      "plan_id": 123880,
+      "server_id": 24372,
+      "contract_id": 56655,
+      "contract_item_id": 67778,
+      "customer": {
+        "id": 1993944,
+        "full_name": "Antonio Carlos Brito dos Santos"
+      },
+      "contract": {
+        "id": 56655,
+        "name": "Contrato do Cliente ID 1993944",
+        "status": "active"
+      },
+      "server": {
+        "id": 24372,
+        "name": "CONCENTRADOR JM ",
+        "hash_server": "9BCEA76CDE20E170CC859ABF3C7248E2"
+      },
+      "plan": {
+        "id": 123880,
+        "name": "50 MEGA",
+        "value": "50.0"
+      },
+      "onu": null
+    },
+    {
+      "id": 56906,
+      "login_type": "internet",
+      "authentication_type": "pppoe",
+      "login": "antoniocarlos@flash.com.br",
+      "password": "12345",
+      "status": "active",
+      "access_status": "access_active",
+      "freeze_access_status": false,
+      "customer_id": 1993945,
+      "plan_id": 123880,
+      "server_id": 24372,
+      "contract_id": 56656,
+      "contract_item_id": 67779,
+      "customer": {
+        "id": 1993945,
+        "full_name": "Antonio Carlos Gomes de Oliveira"
+      },
+      "contract": {
+        "id": 56656,
+        "name": "Contrato do Cliente ID 1993945",
+        "status": "active"
+      },
+      "server": {
+        "id": 24372,
+        "name": "CONCENTRADOR JM ",
+        "hash_server": "9BCEA76CDE20E170CC859ABF3C7248E2"
+      },
+      "plan": {
+        "id": 123880,
+        "name": "50 MEGA",
+        "value": "50.0"
+      },
+      "onu": {
+        "id": 291648,
+        "serial_number": "18-0d-2c-be-a6-eb",
+        "olt_id": 494
+      }
+    },
+    {
+      "id": 56907,
+      "login_type": "internet",
+      "authentication_type": "pppoe",
+      "login": "babi@jmlinkdigital.com.br",
+      "password": "12345",
+      "status": "active",
+      "access_status": "access_active",
+      "freeze_access_status": false,
+      "customer_id": 1994029,
+      "plan_id": 123886,
+      "server_id": 28512,
+      "contract_id": 56657,
+      "contract_item_id": 67780,
+      "customer": {
+        "id": 1994029,
+        "full_name": "Barbara Souza Japiassu de Oliveira"
+      },
+      "contract": {
+        "id": 56657,
+        "name": "Contrato do Cliente ID 1994029",
+        "status": "active"
+      },
+      "server": {
+        "id": 28512,
+        "name": "CONCENTRADOR RB 4011 ",
+        "hash_server": "0EA8F9B5EA4FF5344642E01BA62A0524"
+      },
+      "plan": {
+        "id": 123886,
+        "name": "150 MEGA ",
+        "value": "100.0"
+      },
+      "onu": {
+        "id": 146747,
+        "serial_number": "48-51-cf-65-79-97",
+        "olt_id": 494
+      }
+    },
+    {
+      "id": 56903,
+      "login_type": "internet",
+      "authentication_type": "pppoe",
+      "login": "boutique@jm.com.br",
+      "password": "12345",
+      "status": "active",
+      "access_status": "access_active",
+      "freeze_access_status": false,
+      "customer_id": 2112400,
+      "plan_id": 123880,
+      "server_id": 24372,
+      "contract_id": 56653,
+      "contract_item_id": 67776,
+      "customer": {
+        "id": 2112400,
+        "full_name": "Ana Lara Carneiro Vieira "
+      },
+      "contract": {
+        "id": 56653,
+        "name": "Contrato do Cliente ID 2112400",
+        "status": "active"
+      },
+      "server": {
+        "id": 24372,
+        "name": "CONCENTRADOR JM ",
+        "hash_server": "9BCEA76CDE20E170CC859ABF3C7248E2"
+      },
+      "plan": {
+        "id": 123880,
+        "name": "50 MEGA",
+        "value": "50.0"
+      },
+      "onu": {
+        "id": 188696,
+        "serial_number": "1c-ef-03-b4-c7-b6",
+        "olt_id": 494
+      }
+    },
+    {
+      "id": 120178,
+      "login_type": "internet",
+      "authentication_type": "pppoe",
+      "login": "branquinho@jm.com.br",
+      "password": "12345",
+      "status": "active",
+      "access_status": "access_active",
+      "freeze_access_status": false,
+      "customer_id": 2592054,
+      "plan_id": 123880,
+      "server_id": 28512,
+      "contract_id": 116798,
+      "contract_item_id": 149353,
+      "customer": {
+        "id": 2592054,
+        "full_name": "Josiel Campos Assis "
+      },
+      "contract": {
+        "id": 116798,
+        "name": "Contrato do Cliente ID 2592054",
+        "status": "active"
+      },
+      "server": {
+        "id": 28512,
+        "name": "CONCENTRADOR RB 4011 ",
+        "hash_server": "0EA8F9B5EA4FF5344642E01BA62A0524"
+      },
+      "plan": {
+        "id": 123880,
+        "name": "50 MEGA",
+        "value": "50.0"
+      },
+      "onu": null
+    },
+    {
+      "id": 56908,
+      "login_type": "internet",
+      "authentication_type": "pppoe",
+      "login": "carlos@jm.com.br",
+      "password": "12345",
+      "status": "disabled",
+      "access_status": "access_unavailable",
+      "freeze_access_status": false,
+      "customer_id": 2148334,
+      "plan_id": 123880,
+      "server_id": 24372,
+      "contract_id": 56658,
+      "contract_item_id": 67781,
+      "customer": null,
+      "contract": {
+        "id": 56658,
+        "name": "Contrato do Cliente ID 2148334",
+        "status": "canceled"
+      },
+      "server": {
+        "id": 24372,
+        "name": "CONCENTRADOR JM ",
+        "hash_server": "9BCEA76CDE20E170CC859ABF3C7248E2"
+      },
+      "plan": {
+        "id": 123880,
+        "name": "50 MEGA",
+        "value": "50.0"
+      },
+      "onu": null
+    },
+    {
+      "id": 56909,
+      "login_type": "internet",
+      "authentication_type": "pppoe",
+      "login": "carolinabelem@flash.com.br",
+      "password": "12345",
+      "status": "active",
+      "access_status": "access_active",
+      "freeze_access_status": false,
+      "customer_id": 1993949,
+      "plan_id": 123880,
+      "server_id": 24372,
+      "contract_id": 56659,
+      "contract_item_id": 67782,
+      "customer": {
+        "id": 1993949,
+        "full_name": "Carolina de Belém Santiago"
+      },
+      "contract": {
+        "id": 56659,
+        "name": "Contrato do Cliente ID 1993949",
+        "status": "active"
+      },
+      "server": {
+        "id": 24372,
+        "name": "CONCENTRADOR JM ",
+        "hash_server": "9BCEA76CDE20E170CC859ABF3C7248E2"
+      },
+      "plan": {
+        "id": 123880,
+        "name": "50 MEGA",
+        "value": "50.0"
+      },
+      "onu": {
+        "id": 146712,
+        "serial_number": "d8-77-8b-3f-c3-a2",
+        "olt_id": 494
+      }
+    },
+    {
+      "id": 56910,
+      "login_type": "internet",
+      "authentication_type": "pppoe",
+      "login": "carolinecarmo@jmlinkdigital.com.br",
+      "password": "12345",
+      "status": "active",
+      "access_status": "access_active",
+      "freeze_access_status": false,
+      "customer_id": 2002021,
+      "plan_id": 123886,
+      "server_id": 24372,
+      "contract_id": 56660,
+      "contract_item_id": 67783,
+      "customer": {
+        "id": 2002021,
+        "full_name": "Caroline Cerqueira Maia de Carmo "
+      },
+      "contract": {
+        "id": 56660,
+        "name": "Contrato do Cliente ID 2002021",
+        "status": "active"
+      },
+      "server": {
+        "id": 24372,
+        "name": "CONCENTRADOR JM ",
+        "hash_server": "9BCEA76CDE20E170CC859ABF3C7248E2"
+      },
+      "plan": {
+        "id": 123886,
+        "name": "150 MEGA ",
+        "value": "100.0"
+      },
+      "onu": {
+        "id": 149867,
+        "serial_number": "70-a5-6a-6d-88-c0",
+        "olt_id": 494
+      }
+    },
+    {
+      "id": 101614,
+      "login_type": "internet",
+      "authentication_type": "pppoe",
+      "login": "cleidealmeida@jm.com.br",
+      "password": "12345",
+      "status": "active",
+      "access_status": "access_active",
+      "freeze_access_status": false,
+      "customer_id": 2539858,
+      "plan_id": 123880,
+      "server_id": 24372,
+      "contract_id": 99428,
+      "contract_item_id": 125360,
+      "customer": {
+        "id": 2539858,
+        "full_name": "Cleide de Almeida Santana"
+      },
+      "contract": {
+        "id": 99428,
+        "name": "Contrato do Cliente ID 2539858",
+        "status": "active"
+      },
+      "server": {
+        "id": 24372,
+        "name": "CONCENTRADOR JM ",
+        "hash_server": "9BCEA76CDE20E170CC859ABF3C7248E2"
+      },
+      "plan": {
+        "id": 123880,
+        "name": "50 MEGA",
+        "value": "50.0"
+      },
+      "onu": {
+        "id": 461184,
+        "serial_number": "50-5b-1d-18-52-f0",
+        "olt_id": 494
+      }
+    },
+    {
+      "id": 125012,
+      "login_type": "internet",
+      "authentication_type": "pppoe",
+      "login": "cleidsonsilva@jm.com.br",
+      "password": "12345",
+      "status": "active",
+      "access_status": "access_active",
+      "freeze_access_status": false,
+      "customer_id": 2599875,
+      "plan_id": 123880,
+      "server_id": 24372,
+      "contract_id": 121451,
+      "contract_item_id": 154855,
+      "customer": {
+        "id": 2599875,
+        "full_name": "Cleidson Albuquerque da Silva "
+      },
+      "contract": {
+        "id": 121451,
+        "name": "Contrato do Cliente ID 2599875",
+        "status": "active"
+      },
+      "server": {
+        "id": 24372,
+        "name": "CONCENTRADOR JM ",
+        "hash_server": "9BCEA76CDE20E170CC859ABF3C7248E2"
+      },
+      "plan": {
+        "id": 123880,
+        "name": "50 MEGA",
+        "value": "50.0"
+      },
+      "onu": null
+    },
+    {
+      "id": 56965,
+      "login_type": "internet",
+      "authentication_type": "pppoe",
+      "login": "costapinto@flash.com.br",
+      "password": "12345",
+      "status": "active",
+      "access_status": "access_active",
+      "freeze_access_status": false,
+      "customer_id": 1993868,
+      "plan_id": 123882,
+      "server_id": 24372,
+      "contract_id": 56715,
+      "contract_item_id": 67838,
+      "customer": {
+        "id": 1993868,
+        "full_name": "Priscila Gomes Costa  "
+      },
+      "contract": {
+        "id": 56715,
+        "name": "Contrato do Cliente ID 1993868",
+        "status": "active"
+      },
+      "server": {
+        "id": 24372,
+        "name": "CONCENTRADOR JM ",
+        "hash_server": "9BCEA76CDE20E170CC859ABF3C7248E2"
+      },
+      "plan": {
+        "id": 123882,
+        "name": "70 MEGA ",
+        "value": "60.0"
+      },
+      "onu": {
+        "id": 194261,
+        "serial_number": "24-fd-0d-35-61-8a",
+        "olt_id": 494
+      }
+    },
+    {
+      "id": 49047,
+      "login_type": "internet",
+      "authentication_type": "pppoe",
+      "login": "cristiane@flash.com.br",
+      "password": "12345",
+      "status": "active",
+      "access_status": "access_active",
+      "freeze_access_status": false,
+      "customer_id": 2053351,
+      "plan_id": 123884,
+      "server_id": 24372,
+      "contract_id": 48912,
+      "contract_item_id": 57283,
+      "customer": {
+        "id": 2053351,
+        "full_name": "Cristiane Santos Santana"
+      },
+      "contract": {
+        "id": 48912,
+        "name": "Contrato do Cliente ID 2053351",
+        "status": "active"
+      },
+      "server": {
+        "id": 24372,
+        "name": "CONCENTRADOR JM ",
+        "hash_server": "9BCEA76CDE20E170CC859ABF3C7248E2"
+      },
+      "plan": {
+        "id": 123884,
+        "name": "80 MEGA",
+        "value": "65.0"
+      },
+      "onu": {
+        "id": 166652,
+        "serial_number": "1c-ef-03-b4-c3-7e",
+        "olt_id": 494
+      }
+    }
+  ],
+  "meta": {
+    "pages": {
+      "current_page": 1,
+      "next_page": 2,
+      "prev_page": null,
+      "total_pages": 5,
+      "total_count": 97
+    }
+  }
+}

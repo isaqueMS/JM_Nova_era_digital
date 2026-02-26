@@ -1,0 +1,123 @@
+{
+  "login": {
+    "id": 56899,
+    "login_type": "internet",
+    "authentication_type": "pppoe",
+    "login": "003@jmlinkdigital.com.br",
+    "password": "12345",
+    "ip": "100.64.2.21",
+    "mac": null,
+    "status": "active",
+    "access_status": "access_active",
+    "freeze_access_status": false,
+    "description": null,
+    "activated_at": null,
+    "disabled_at": null,
+    "access_activated_at": "2026-01-07T22:59:51.000Z",
+    "access_pending_at": null,
+    "access_blocked_at": "2025-12-26T03:21:03.000Z",
+    "created_by": "jmlinkdigital@gmail.com",
+    "updated_by": "sistema",
+    "longitude": "-38.419334293",
+    "latitude": "-12.9278473665",
+    "created_at": "2024-11-04T22:43:29.140Z",
+    "updated_at": "2026-01-07T22:59:51.895Z",
+    "customer_id": 1993147,
+    "plan_id": 123885,
+    "server_id": 24372,
+    "contract_id": 56649,
+    "contract_item_id": 67772,
+    "phone_number": null,
+    "customer": {
+      "id": 1993147,
+      "full_name": "Alberico Pereira Bezerra "
+    },
+    "contract": {
+      "id": 56649,
+      "name": "Contrato do Cliente ID 1993147",
+      "status": "active"
+    },
+    "contract_item": {
+      "id": 67772,
+      "company_id": 9384,
+      "contract_id": 56649,
+      "customer_id": 1993147,
+      "product_id": null,
+      "plan_id": 123885,
+      "service_id": null,
+      "login_id": 56899,
+      "name": "100 MEGA",
+      "description": null,
+      "item_type": "plan",
+      "plan_type": "internet",
+      "status": "active",
+      "active": true,
+      "quantity": "1.0",
+      "amount": "80.0",
+      "repeat_count": 0,
+      "repeated_count": 26,
+      "use_address_from": "customer",
+      "address_zip_code": null,
+      "address_street": null,
+      "address_number": null,
+      "address_complement": null,
+      "address_neighborhood": null,
+      "address_city": null,
+      "address_state": null,
+      "in_lending": false,
+      "delivered_at": null,
+      "returned_at": null,
+      "serial_number": null,
+      "free_monthly": null,
+      "automatic_blocking": true,
+      "automatic_pending": true,
+      "days_to_block": null,
+      "days_to_pending": null,
+      "discount_enabled": false,
+      "discount_type": "percentage",
+      "discount_value": null,
+      "addition_enabled": false,
+      "addition_type": "percentage",
+      "addition_value": null,
+      "discount_amount": "0.0",
+      "addition_amount": "0.0",
+      "subtotal": "80.0",
+      "total": "80.0",
+      "cancellation_motivation_id": null,
+      "cancellation_obs": null,
+      "disabled_at": null,
+      "finished_at": null,
+      "canceled_at": null,
+      "suspended_at": null,
+      "activated_at": null,
+      "created_by": "jmlinkdigital@gmail.com",
+      "updated_by": null,
+      "dynamic_attrs": {
+        "installments": [
+          {
+            "id": 1,
+            "total": "80.0",
+            "has_billing": true
+          }
+        ]
+      },
+      "created_at": "2024-11-04T22:43:29.663Z",
+      "updated_at": "2025-07-17T12:53:30.747Z"
+    },
+    "server": {
+      "id": 24372,
+      "name": "CONCENTRADOR JM ",
+      "hash_server": "9BCEA76CDE20E170CC859ABF3C7248E2"
+    },
+    "plan": {
+      "id": 123885,
+      "name": "100 MEGA",
+      "value": "80.0"
+    },
+    "onu": {
+      "id": 181917,
+      "serial_number": "1c-ef-03-b4-c3-e6",
+      "olt_id": 494
+    }
+  }
+}
