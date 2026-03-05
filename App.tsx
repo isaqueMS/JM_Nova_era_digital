@@ -2,7 +2,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { StyleSheet, View, StatusBar, Platform, TouchableOpacity, Text, Modal, Animated, Dimensions, Easing, Linking, ScrollView } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import { Home, Receipt, Gauge, MessageSquare, Hammer, Bell, User, LogOut, ChevronRight, X, Phone, LayoutDashboard } from 'lucide-react-native';
+import { Home, Receipt, Gauge, MessageSquare, Hammer, Bell, User, LogOut, ChevronRight, X, Phone, LayoutDashboard, Gamepad2 } from 'lucide-react-native';
+import InternetGameScreen from './components/InternetGame/InternetGameScreen';
 import AccessPortal from './components/AccessPortal';
 import Dashboard from './components/Dashboard';
 import Finance from './components/Finance';
@@ -12,7 +13,7 @@ import Profile from './components/Profile';
 import Notifications from './components/Notifications';
 import { MikWebService } from './services/mikweb';
 import { Customer, Invoice, AppNotification } from './types';
-import { lightTheme, techTheme } from './utils';
+import { lightTheme, techTheme, TECHNICIAN_IDS } from './utils';
 import { Moon, Sun } from 'lucide-react-native';
 
 const { width } = Dimensions.get('window');
@@ -30,7 +31,7 @@ export default function App() {
   const menuAnim = useRef(new Animated.Value(-width)).current;
   const tabAnim = useRef(new Animated.Value(0)).current;
 
-  const isTechnician = customer?.cpf_cnpj === '00000000000';
+  const isTechnician = TECHNICIAN_IDS.includes(customer?.cpf_cnpj || '');
   const theme = isTechnician ? techTheme : (isDarkMode ? techTheme : lightTheme);
 
   const tabs = [
@@ -95,7 +96,7 @@ export default function App() {
         setNotifications(notifData);
         setIsIdentified(true);
         // Se for técnico, força a aba técnica
-        if (customerData.cpf_cnpj === '00000000000') {
+        if (TECHNICIAN_IDS.includes(customerData.cpf_cnpj || '')) {
           setActiveTab('tech');
         } else {
           setActiveTab('dashboard');
@@ -142,6 +143,7 @@ export default function App() {
       case 'support': return <Support customer={customer!} theme={theme} />;
       case 'tech': return <TechnicianArea onLogout={handleLogout} theme={theme} />;
       case 'profile': return <Profile customer={customer!} theme={theme} />;
+      case 'internet-game': return <InternetGameScreen theme={theme} onClose={() => navigateTo('dashboard')} customer={customer!} />;
       default: return <Dashboard customer={customer} invoices={invoices} theme={theme} onNavigate={navigateTo} onOpenMenu={() => toggleMenu(true)} unreadCount={unread} onOpenNotifications={handleOpenNotifications} />;
     }
   };
@@ -201,6 +203,7 @@ export default function App() {
               <MenuOption icon={Receipt} label="Faturas e Boletos" onPress={() => navigateTo('finance')} />
 
               <MenuOption icon={MessageSquare} label="Suporte Inteligente" onPress={() => navigateTo('support')} />
+              <MenuOption icon={Gamepad2} label="Conexão Turbo (Mini-Game)" onPress={() => navigateTo('internet-game')} color="#00d4ff" />
               <MenuOption icon={Phone} label="Suporte no WhatsApp" onPress={openWhatsApp} color="#22c55e" />
 
               <View style={styles.menuDivider} />
@@ -222,62 +225,64 @@ export default function App() {
           </Animated.View>
         </View>
 
-        <View style={[styles.tabBar, { backgroundColor: theme.card, borderTopColor: theme.border }]}>
-          <Animated.View
-            style={[
-              styles.tabIndicator,
-              {
-                width: width / tabs.length,
-                backgroundColor: theme.primary + '15',
-                transform: [{
-                  translateX: tabAnim.interpolate({
-                    inputRange: tabs.map((_, i) => i),
-                    outputRange: tabs.map((_, i) => (width / tabs.length) * i)
-                  })
-                }]
-              }
-            ]}
-          />
-          <Animated.View
-            style={[
-              styles.tabBorderTop,
-              {
-                width: width / tabs.length,
-                backgroundColor: theme.primary,
-                borderRadius: 4,
-                transform: [
-                  {
+        {activeTab !== 'internet-game' && (
+          <View style={[styles.tabBar, { backgroundColor: theme.card, borderTopColor: theme.border }]}>
+            <Animated.View
+              style={[
+                styles.tabIndicator,
+                {
+                  width: width / tabs.length,
+                  backgroundColor: theme.primary + '15',
+                  transform: [{
                     translateX: tabAnim.interpolate({
                       inputRange: tabs.map((_, i) => i),
                       outputRange: tabs.map((_, i) => (width / tabs.length) * i)
                     })
-                  },
-                  {
-                    scaleX: tabAnim.interpolate({
-                      inputRange: tabs.map((_, i) => i),
-                      outputRange: tabs.map((_, i) => 1),
-                      // Note: Complex stretch during move requires tracking delta, 
-                      // but scale animation provides a stylish touch.
-                    })
-                  }
-                ]
-              }
-            ]}
-          />
-          {tabs.map((item) => (
-            <TouchableOpacity
-              key={item.id}
-              onPress={() => setActiveTab(item.id)}
-              style={styles.tabItem}
-              activeOpacity={0.7}
-            >
-              <item.icon size={22} color={activeTab === item.id ? theme.primary : theme.textDim} />
-              <Text style={[styles.tabLabel, { color: activeTab === item.id ? theme.primary : theme.textDim }, activeTab === item.id && styles.tabLabelActive]}>
-                {item.label}
-              </Text>
-            </TouchableOpacity>
-          ))}
-        </View>
+                  }]
+                }
+              ]}
+            />
+            <Animated.View
+              style={[
+                styles.tabBorderTop,
+                {
+                  width: width / tabs.length,
+                  backgroundColor: theme.primary,
+                  borderRadius: 4,
+                  transform: [
+                    {
+                      translateX: tabAnim.interpolate({
+                        inputRange: tabs.map((_, i) => i),
+                        outputRange: tabs.map((_, i) => (width / tabs.length) * i)
+                      })
+                    },
+                    {
+                      scaleX: tabAnim.interpolate({
+                        inputRange: tabs.map((_, i) => i),
+                        outputRange: tabs.map((_, i) => 1),
+                        // Note: Complex stretch during move requires tracking delta, 
+                        // but scale animation provides a stylish touch.
+                      })
+                    }
+                  ]
+                }
+              ]}
+            />
+            {tabs.map((item) => (
+              <TouchableOpacity
+                key={item.id}
+                onPress={() => setActiveTab(item.id)}
+                style={styles.tabItem}
+                activeOpacity={0.7}
+              >
+                <item.icon size={22} color={activeTab === item.id ? theme.primary : theme.textDim} />
+                <Text style={[styles.tabLabel, { color: activeTab === item.id ? theme.primary : theme.textDim }, activeTab === item.id && styles.tabLabelActive]}>
+                  {item.label}
+                </Text>
+              </TouchableOpacity>
+            ))}
+          </View>
+        )}
 
         <Modal visible={showNotifications} animationType="slide" transparent={false} onRequestClose={() => setShowNotifications(false)}>
           <Notifications

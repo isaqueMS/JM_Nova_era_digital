@@ -47,7 +47,7 @@ import { MIKWEB_TOKEN } from '../services/mikweb';
 
 const { width, height } = Dimensions.get('window');
 
-import { formatDateBR, Theme } from '../utils';
+import { formatDateBR, Theme, TECHNICIAN_IDS } from '../utils';
 import { LinearGradient } from 'expo-linear-gradient';
 
 interface DashboardProps {
@@ -97,7 +97,7 @@ const Dashboard: React.FC<DashboardProps> = ({ customer, invoices, theme, onNavi
 
   const checkBiometricSetup = async () => {
     // Não oferecer biometria para conta demo
-    if (customer?.cpf_cnpj === '00000000000') return;
+    if (TECHNICIAN_IDS.includes(customer?.cpf_cnpj || '')) return;
 
     try {
       const savedDoc = await SecureStore.getItemAsync('user_document');
@@ -319,7 +319,7 @@ const Dashboard: React.FC<DashboardProps> = ({ customer, invoices, theme, onNavi
             <QuickLink icon={Rocket} label="Planos" color="#a855f7" theme={theme} onPress={() => setShowPlansModal(true)} />
           </View>
 
-          {!showBiometricSetup && customer?.cpf_cnpj !== '00000000000' && (
+          {!showBiometricSetup && !TECHNICIAN_IDS.includes(customer?.cpf_cnpj || '') && (
             <View style={styles.biometricStatusCard}>
               <ShieldCheck color={theme.success} size={20} />
               <Text style={styles.biometricStatusText}>Sua conta está protegida por criptografia de ponta.</Text>

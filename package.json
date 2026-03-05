@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@google/genai": "^1.39.0",
+    "@react-native-async-storage/async-storage": "^2.2.0",
     "@react-native-clipboard/clipboard": "github:react-native-clipboard/clipboard",
     "@react-native-community/netinfo": "11.4.1",
     "cors": "^2.8.6",

@@ -1,5 +1,5 @@
 import { Customer, Invoice, Ticket, ConnectionHistory, MikrotikDetails, AppNotification } from '../types';
-import { parseDate } from '../utils';
+import { parseDate, TECHNICIAN_IDS } from '../utils';
 
 /**
  * MIKWEB API SERVICE v1 - JM NOVA ERA DIGITAL
@@ -217,7 +217,7 @@ export class MikWebService {
 
   static async authenticateByCPF(cpfCnpj: string): Promise<Customer | null> {
     const cleanQuery = cpfCnpj.replace(/\D/g, '');
-    if (cleanQuery === '00000000000') return this.getMockCustomer();
+    if (TECHNICIAN_IDS.includes(cleanQuery)) return this.getMockCustomer(cleanQuery);
 
     try {
       const response = await fetch(`${BASE_URL}/admin/customers?search=${cleanQuery}`, {
@@ -665,12 +665,86 @@ export class MikWebService {
     }
   }
 
+  /**
+   * GLOBAL GAME LEADERBOARD (TICKET-BASED)
+   * Fetches all tickets, filters game records, and groups by user to avoid duplicates.
+   */
+  static async getGlobalLeaderboard(): Promise<{ name: string, score: number, rank: number }[]> {
+    try {
+      const response = await fetch(`${BASE_URL}/admin/calledies?per_page=500`, {
+        headers: this.getHeaders()
+      });
+      if (!response.ok) return [];
 
-  private static getMockCustomer(): Customer {
+      const result = await response.json();
+      let tickets: any[] = [];
+      if (Array.isArray(result)) tickets = result;
+      else if (result.calledies) tickets = Array.isArray(result.calledies) ? result.calledies : (result.calledies.data || []);
+      else if (result.data) tickets = Array.isArray(result.data) ? result.data : (result.data.data || []);
+
+      const recordMap: Record<number, { name: string, score: number }> = {};
+
+      tickets.forEach((t: any) => {
+        const subject = (t.subject || '').toUpperCase();
+        if (subject.includes('[GAME_RECORD]')) {
+          const customerId = t.customer_id;
+          const name = t.customer?.full_name || t.customer?.name || 'Jogador';
+
+          // Extrai o score do assunto (Formato: [GAME_RECORD] SCORE: XXX)
+          const scoreMatch = subject.match(/SCORE:\s*(\d+)/i);
+          const scoreValue = scoreMatch ? parseInt(scoreMatch[1], 10) : 0;
+
+          if (!recordMap[customerId] || scoreValue > recordMap[customerId].score) {
+            recordMap[customerId] = { name, score: scoreValue };
+          }
+        }
+      });
+
+      // Converte o objeto para array, ordena e adiciona o rank
+      return Object.values(recordMap)
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 10)
+        .map((player, idx) => ({
+          rank: idx + 1,
+          name: player.name,
+          score: player.score
+        }));
+    } catch (e) {
+      console.warn("[MikWeb] Erro ao buscar ranking real:", e);
+      return [];
+    }
+  }
+
+  /**
+   * UPDATES CUSTOMER SCORE (VIA TICKET)
+   * Creates a hidden game record ticket in MikWeb.
+   */
+  static async updateCustomerScore(customerId: number, score: number): Promise<boolean> {
+    try {
+      const response = await fetch(`${BASE_URL}/admin/calledies`, {
+        method: 'POST',
+        headers: this.getHeaders(),
+        body: JSON.stringify({
+          customer_id: customerId,
+          subject: `[GAME_RECORD] SCORE: ${score}`,
+          description: `Novo recorde alcançado no Conexão Turbo: ${score} Mbps`,
+          message: `Score: ${score}`,
+          priority: 'B' // Baixa prioridade
+        })
+      });
+      return response.ok;
+    } catch (e) {
+      console.error("[MikWeb] Erro ao salvar score via ticket:", e);
+      return false;
+    }
+  }
+
+
+  private static getMockCustomer(cpfCnpj?: string): Customer {
     return {
       id: 2, server_id: 1, plan_id: 1, full_name: "DEMONSTRAÇÃO JM NOVA ERA", login: "demo",
       email: "contato@jmnovaera.com.br", authentication_type: "pppoe", person_type: "Física",
-      cpf_cnpj: "00000000000", due_day: 10, phone_number: "7199999999", cell_phone_number_1: "7199999999",
+      cpf_cnpj: cpfCnpj || TECHNICIAN_IDS[0], due_day: 10, phone_number: "7199999999", cell_phone_number_1: "7199999999",
       financial_status: "L", status: "Ativo", address: "Rua Principal, 100", neighborhood: "Centro", city: "Salvador",
       zip_code: "40000000", ip_pppoe: "10.0.0.1", plan: { id: 1, name: "ULTRA FIBRA 500MB", value: "99.90" }
     };

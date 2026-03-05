@@ -91,4 +91,6 @@ export const techTheme = {
     shadow: '#000000bb'
 };
 
+export const TECHNICIAN_IDS = ['03535413550', '71987783383'];
+
 export type Theme = typeof lightTheme;

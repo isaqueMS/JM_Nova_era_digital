@@ -12,11 +12,12 @@ import {
   Alert,
   ScrollView,
   Dimensions,
-  Platform
+  Platform,
+  Linking
 } from 'react-native';
 import { MikWebService } from '../services/mikweb';
 import { Ticket } from '../types';
-import { Theme } from '../utils';
+import { Theme, TECHNICIAN_IDS } from '../utils';
 import {
   HardDrive,
   Receipt,
@@ -225,29 +226,31 @@ const TechnicianArea: React.FC<TechnicianAreaProps> = ({ onLogout, theme }) => {
     setLoadingDiag(false);
   };
 
-  const handleDownloadBillet = async (invoiceId: string) => {
+  const handleDownloadBillet = async (inv: Invoice) => {
     try {
-      Alert.alert("Baixando", "Aguarde um momento...");
-      const blob = await MikWebService.downloadBillet(invoiceId);
-      if (!blob) {
-        Alert.alert("Erro", "Não foi possível baixar o boleto.");
-        return;
+      let openUrl = inv.link_boleto || '';
+
+      // Tenta buscar o link atualizado via API MikWeb
+      try {
+        const response = await fetch(`https://api.mikweb.com.br/v1/admin/billings/${inv.id}`, {
+          headers: MikWebService.getHeaders()
+        });
+        if (response.ok) {
+          const data = await response.json();
+          const b = data.billing || data;
+          openUrl = b.integration_link || b.pdf || b.link || openUrl;
+        }
+      } catch (e) {
+        console.warn("Erro ao buscar link atualizado:", e);
       }
 
-      if (Platform.OS === 'web') {
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `Fatura_${selectedDiagCustomer?.login}_${invoiceId}.pdf`;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
+      if (openUrl && openUrl.startsWith('http')) {
+        Linking.openURL(openUrl);
       } else {
-        Alert.alert("Sucesso", "Boleto lido, mas a funcionalidade nativa requer salvamento local (em desenvolvimento para app).");
+        Alert.alert("Indisponível", "Esta fatura não possui link disponível para visualização.");
       }
     } catch {
-      Alert.alert("Erro", "Falha ao processar o download.");
+      Alert.alert("Erro", "Falha ao processar o redirecionamento.");
     }
   };
 
@@ -310,13 +313,13 @@ const TechnicianArea: React.FC<TechnicianAreaProps> = ({ onLogout, theme }) => {
       Alert.alert("Erro", "Preencha o título e a mensagem do comunicado.");
       return;
     }
-    let targetCustomers = customers.filter(c => c.cpf_cnpj !== '00000000000');
+    let targetCustomers = customers.filter(c => !TECHNICIAN_IDS.includes(c.cpf_cnpj || ''));
 
     if (targetCustomers.length === 0) {
       Alert.alert("Aguarde", "Carregando base de clientes...");
       setIsBroadcasting(true);
       const allCustomers = await MikWebService.getAllCustomers();
-      targetCustomers = allCustomers.filter(c => c.cpf_cnpj !== '00000000000');
+      targetCustomers = allCustomers.filter(c => !TECHNICIAN_IDS.includes(c.cpf_cnpj || ''));
       setIsBroadcasting(false);
 
       if (targetCustomers.length === 0) {
@@ -849,7 +852,7 @@ const TechnicianArea: React.FC<TechnicianAreaProps> = ({ onLogout, theme }) => {
                           <Text style={[styles.invVal, { color: inv.status === 'P' ? '#10b981' : '#f43f5e' }]}>R$ {inv.value}</Text>
                           <Text style={styles.invSt}>{inv.status === 'P' ? 'PAGO' : 'PENDENTE'}</Text>
                           <View style={{ flexDirection: 'row', gap: 10, marginTop: 5 }}>
-                            <TouchableOpacity onPress={() => handleDownloadBillet(inv.id)} style={{ padding: 5, backgroundColor: 'rgba(255,255,255,0.1)', borderRadius: 5 }}>
+                            <TouchableOpacity onPress={() => handleDownloadBillet(inv)} style={{ padding: 5, backgroundColor: 'rgba(255,255,255,0.1)', borderRadius: 5 }}>
                               <Download size={14} color="#38bdf8" />
                             </TouchableOpacity>
                             {inv.status !== 'P' && (

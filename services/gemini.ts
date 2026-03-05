@@ -3,9 +3,9 @@ import { GoogleGenAI } from "@google/genai";
 
 export const getAIResponse = async (userPrompt: string, customerName: string) => {
   try {
-    // Fix: Always initialize GoogleGenAI inside the function scope to ensure current API key is used, following guidelines
-    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-    
+    // Fix: Use EXPO_PUBLIC_ prefix for environment variables in Expo
+    const ai = new GoogleGenAI({ apiKey: process.env.EXPO_PUBLIC_GEMINI_API_KEY });
+
     // Fix: Select gemini-3-pro-preview as it is better suited for complex technical reasoning and troubleshooting tasks
     const response = await ai.models.generateContent({
       model: 'gemini-3-pro-preview',
