@@ -1,46 +1,30 @@
 
 import React from 'react';
+import { createRoot } from 'react-dom/client';
+import { AppRegistry, Platform } from 'react-native';
 import App from './App';
 
-// Fix: Declare require globally to resolve compilation errors when using dynamic imports
-// in a universal entry point that targets both Web (react-dom) and Native (react-native) environments.
-declare var require: any;
-
 /**
- * Sistema de inicialização universal JM DIGITAL
- * Protege contra erros de referência global em ambientes sem DOM (Android/iOS)
+ * Inicializador Universal JM DIGITAL
+ * Garante que o app rode no navegador (Vite/GitHub Pages) 
+ * e também no app mobile nativo (Expo/Metro).
  */
-const init = () => {
-  // Verifica se existe o objeto global 'window' e 'document'
-  const isWeb = typeof window !== 'undefined' && typeof window.document !== 'undefined';
-
-  if (isWeb) {
-    // Ambiente Navegador: Carrega react-dom dinamicamente
-    try {
-      // Usamos require dinâmico para evitar que o bundler nativo tente processar react-dom
-      const ReactDOM = require('react-dom/client');
-      const rootElement = window.document.getElementById('root');
-      if (rootElement) {
-        const root = ReactDOM.createRoot(rootElement);
-        root.render(
-          <React.StrictMode>
-            <App />
-          </React.StrictMode>
-        );
-      }
-    } catch (e) {
-      console.error("Erro na inicialização Web:", e);
+const startApp = () => {
+  if (Platform.OS === 'web') {
+    // Ambiente Browser: Usa o padrão moderno do React 18
+    const rootElement = document.getElementById('root');
+    if (rootElement) {
+      const root = createRoot(rootElement);
+      root.render(
+        <React.StrictMode>
+          <App />
+        </React.StrictMode>
+      );
     }
   } else {
-    // Ambiente Mobile Nativo: Registra o componente via AppRegistry
-    try {
-      const { AppRegistry } = require('react-native');
-      // No Expo, o componente principal deve ser registrado como 'main'
-      AppRegistry.registerComponent('main', () => App);
-    } catch (e) {
-      console.error("Erro na inicialização Native:", e);
-    }
+    // Ambiente Nativo: Registra no AppRegistry
+    AppRegistry.registerComponent('main', () => App);
   }
 };
 
-init();
+startApp();
