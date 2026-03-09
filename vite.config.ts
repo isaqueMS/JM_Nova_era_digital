@@ -5,8 +5,13 @@ import { transform } from 'esbuild';
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.', '');
+
+  // Detecção automática de ambiente GitHub Pages
+  const isProd = mode === 'production';
+  const base = isProd ? '/JM_Nova_era_digital/' : './';
+
   return {
-    base: './',
+    base,
     server: {
       port: 3000,
       host: '0.0.0.0',
@@ -16,7 +21,6 @@ export default defineConfig(({ mode }) => {
       {
         name: 'fix-expo-jsx',
         async transform(code, id) {
-          // Detecta arquivos .js que contém JSX (comum em pacotes Expo compilados para mobile)
           if (id.includes('node_modules') && id.endsWith('.js')) {
             if (code.includes('(<') || code.includes('<NativeLinearGradient')) {
               const { code: transformedCode } = await transform(code, {
@@ -35,13 +39,20 @@ export default defineConfig(({ mode }) => {
       },
     ],
     define: {
-      'process.env.GEMINI_API_KEY': JSON.stringify(env.EXPO_PUBLIC_GEMINI_API_KEY || env.GEMINI_API_KEY),
-      'process.env.EXPO_PUBLIC_GEMINI_API_KEY': JSON.stringify(env.EXPO_PUBLIC_GEMINI_API_KEY || env.GEMINI_API_KEY),
-      'process.env.EXPO_PUBLIC_MIKWEB_TOKEN': JSON.stringify(env.EXPO_PUBLIC_MIKWEB_TOKEN || env.MIKWEB_TOKEN),
-      'process.env.EXPO_PUBLIC_EFI_CLIENT_ID': JSON.stringify(env.EXPO_PUBLIC_EFI_CLIENT_ID || env.EFI_CLIENT_ID),
-      'process.env.EXPO_PUBLIC_EFI_CLIENT_SECRET': JSON.stringify(env.EXPO_PUBLIC_EFI_CLIENT_SECRET || env.EFI_CLIENT_SECRET),
+      __DEV__: isProd ? 'false' : 'true',
+      // Polyfill robusto para 'process' exigido por pacotes Expo/React-Native-Web
+      'process.env': {
+        NODE_ENV: JSON.stringify(mode),
+        GEMINI_API_KEY: env.EXPO_PUBLIC_GEMINI_API_KEY || env.GEMINI_API_KEY || '',
+        EXPO_PUBLIC_GEMINI_API_KEY: env.EXPO_PUBLIC_GEMINI_API_KEY || env.GEMINI_API_KEY || '',
+        EXPO_PUBLIC_MIKWEB_TOKEN: env.EXPO_PUBLIC_MIKWEB_TOKEN || env.MIKWEB_TOKEN || '',
+        EXPO_PUBLIC_EFI_CLIENT_ID: env.EXPO_PUBLIC_EFI_CLIENT_ID || env.EFI_CLIENT_ID || '',
+        EXPO_PUBLIC_EFI_CLIENT_SECRET: env.EXPO_PUBLIC_EFI_CLIENT_SECRET || env.EFI_CLIENT_SECRET || '',
+      },
+      'process.browser': true,
       'global': 'window',
     },
+
     resolve: {
       alias: {
         '@': path.resolve(__dirname, '.'),
@@ -68,3 +79,4 @@ export default defineConfig(({ mode }) => {
     }
   };
 });
+

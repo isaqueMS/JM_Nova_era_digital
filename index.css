@@ -21,7 +21,10 @@ body, html, #root {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   background-color: #001a4d; /* Deep blue background for web desktop */
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
+
 
 /* Custom Scrollbars */
 ::-webkit-scrollbar {
