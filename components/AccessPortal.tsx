@@ -16,7 +16,6 @@ import {
 } from 'react-native';
 import { Lock, Fingerprint, ShieldAlert } from 'lucide-react-native';
 import * as LocalAuthentication from 'expo-local-authentication';
-import * as LocalAuthentication from 'expo-local-authentication';
 import * as SecureStore from 'expo-secure-store';
 
 // Helper de Armazenamento para Ambiente Web/Mobile
