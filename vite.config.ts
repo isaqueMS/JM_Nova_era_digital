@@ -6,9 +6,11 @@ import { transform } from 'esbuild';
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.', '');
 
-  // Detecção automática de ambiente GitHub Pages
+  // Detecção automática de ambiente GitHub Pages vs Vercel
   const isProd = mode === 'production';
-  const base = isProd ? '/JM_Nova_era_digital/' : './';
+  const isVercel = !!env.VERCEL || !!process.env.VERCEL;
+  const base = isVercel ? '/' : (isProd ? '/JM_Nova_era_digital/' : './');
+
 
   return {
     base,
