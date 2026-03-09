@@ -10,19 +10,39 @@ export default defineConfig(({ mode }) => {
       port: 3000,
       host: '0.0.0.0',
     },
-    plugins: [react()],
+    plugins: [
+      react({
+        babel: {
+          plugins: ['@babel/plugin-transform-react-jsx'],
+        },
+      }),
+    ],
     define: {
       'process.env.GEMINI_API_KEY': JSON.stringify(env.EXPO_PUBLIC_GEMINI_API_KEY || env.GEMINI_API_KEY),
       'process.env.EXPO_PUBLIC_GEMINI_API_KEY': JSON.stringify(env.EXPO_PUBLIC_GEMINI_API_KEY || env.GEMINI_API_KEY),
       'process.env.EXPO_PUBLIC_MIKWEB_TOKEN': JSON.stringify(env.EXPO_PUBLIC_MIKWEB_TOKEN || env.MIKWEB_TOKEN),
       'process.env.EXPO_PUBLIC_EFI_CLIENT_ID': JSON.stringify(env.EXPO_PUBLIC_EFI_CLIENT_ID || env.EFI_CLIENT_ID),
-      'process.env.EXPO_PUBLIC_EFI_CLIENT_SECRET': JSON.stringify(env.EXPO_PUBLIC_EFI_CLIENT_SECRET || env.EFI_CLIENT_SECRET)
+      'process.env.EXPO_PUBLIC_EFI_CLIENT_SECRET': JSON.stringify(env.EXPO_PUBLIC_EFI_CLIENT_SECRET || env.EFI_CLIENT_SECRET),
+      'global': 'window',
     },
     resolve: {
       alias: {
         '@': path.resolve(__dirname, '.'),
         'react-native': 'react-native-web',
+        'lucide-react-native': 'lucide-react',
       }
+    },
+    optimizeDeps: {
+      esbuildOptions: {
+        loader: {
+          '.js': 'jsx',
+        },
+        resolveExtensions: ['.web.js', '.web.ts', '.web.tsx', '.js', '.ts', '.tsx'],
+      },
+    },
+    esbuild: {
+      loader: 'jsx',
+      include: /node_modules\/.*\.js$|.*\.jsx?$|.*\.tsx?$/,
     }
   };
 });
