@@ -28,6 +28,7 @@ export default defineConfig(({ mode }) => {
                 loader: 'jsx',
                 format: 'esm',
                 target: 'esnext',
+                jsx: 'automatic',
               });
               return {
                 code: transformedCode,
@@ -72,6 +73,7 @@ export default defineConfig(({ mode }) => {
         loader: {
           '.js': 'jsx',
         },
+        jsx: 'automatic',
         resolveExtensions: ['.web.js', '.web.ts', '.web.tsx', '.js', '.ts', '.tsx'],
       },
     },
