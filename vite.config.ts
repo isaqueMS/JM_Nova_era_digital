@@ -41,7 +41,18 @@ export default defineConfig(({ mode }) => {
     ],
 
 
-    define: {},
+    define: {
+      __DEV__: isProd ? 'false' : 'true',
+      'process.env.NODE_ENV': JSON.stringify(mode),
+      'process.env.EXPO_PUBLIC_GEMINI_API_KEY': JSON.stringify(env.EXPO_PUBLIC_GEMINI_API_KEY || env.GEMINI_API_KEY || process.env.EXPO_PUBLIC_GEMINI_API_KEY || ''),
+      'process.env.GEMINI_API_KEY': JSON.stringify(env.EXPO_PUBLIC_GEMINI_API_KEY || env.GEMINI_API_KEY || process.env.EXPO_PUBLIC_GEMINI_API_KEY || ''),
+      'process.env.EXPO_PUBLIC_MIKWEB_TOKEN': JSON.stringify(env.EXPO_PUBLIC_MIKWEB_TOKEN || env.MIKWEB_TOKEN || process.env.EXPO_PUBLIC_MIKWEB_TOKEN || ''),
+      'process.env.EXPO_PUBLIC_EFI_CLIENT_ID': JSON.stringify(env.EXPO_PUBLIC_EFI_CLIENT_ID || env.EFI_CLIENT_ID || process.env.EXPO_PUBLIC_EFI_CLIENT_ID || ''),
+      'process.env.EXPO_PUBLIC_EFI_CLIENT_SECRET': JSON.stringify(env.EXPO_PUBLIC_EFI_CLIENT_SECRET || env.EFI_CLIENT_SECRET || process.env.EXPO_PUBLIC_EFI_CLIENT_SECRET || ''),
+      'process.browser': 'true',
+      'global': 'window',
+    },
+
 
 
 
