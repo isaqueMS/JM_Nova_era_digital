@@ -18,7 +18,8 @@ import { Moon, Sun } from 'lucide-react-native';
 
 const { width: windowWidth, height: windowHeight } = Dimensions.get('window');
 // For a better responsive feel on web, we normalize based on width but CAP it.
-const layoutWidth = Platform.OS === 'web' ? Math.min(windowWidth, 450) : windowWidth;
+const layoutWidth = Platform.OS === 'web' ? Math.min(windowWidth, 500) : windowWidth;
+
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('dashboard');

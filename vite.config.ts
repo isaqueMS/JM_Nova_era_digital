@@ -40,18 +40,18 @@ export default defineConfig(({ mode }) => {
     ],
     define: {
       __DEV__: isProd ? 'false' : 'true',
-      // Polyfill robusto para 'process' exigido por pacotes Expo/React-Native-Web
       'process.env': {
         NODE_ENV: JSON.stringify(mode),
-        GEMINI_API_KEY: env.EXPO_PUBLIC_GEMINI_API_KEY || env.GEMINI_API_KEY || '',
-        EXPO_PUBLIC_GEMINI_API_KEY: env.EXPO_PUBLIC_GEMINI_API_KEY || env.GEMINI_API_KEY || '',
-        EXPO_PUBLIC_MIKWEB_TOKEN: env.EXPO_PUBLIC_MIKWEB_TOKEN || env.MIKWEB_TOKEN || '',
-        EXPO_PUBLIC_EFI_CLIENT_ID: env.EXPO_PUBLIC_EFI_CLIENT_ID || env.EFI_CLIENT_ID || '',
-        EXPO_PUBLIC_EFI_CLIENT_SECRET: env.EXPO_PUBLIC_EFI_CLIENT_SECRET || env.EFI_CLIENT_SECRET || '',
+        GEMINI_API_KEY: JSON.stringify(env.EXPO_PUBLIC_GEMINI_API_KEY || env.GEMINI_API_KEY || process.env.EXPO_PUBLIC_GEMINI_API_KEY || ''),
+        EXPO_PUBLIC_GEMINI_API_KEY: JSON.stringify(env.EXPO_PUBLIC_GEMINI_API_KEY || env.GEMINI_API_KEY || process.env.EXPO_PUBLIC_GEMINI_API_KEY || ''),
+        EXPO_PUBLIC_MIKWEB_TOKEN: JSON.stringify(env.EXPO_PUBLIC_MIKWEB_TOKEN || env.MIKWEB_TOKEN || process.env.EXPO_PUBLIC_MIKWEB_TOKEN || ''),
+        EXPO_PUBLIC_EFI_CLIENT_ID: JSON.stringify(env.EXPO_PUBLIC_EFI_CLIENT_ID || env.EFI_CLIENT_ID || process.env.EXPO_PUBLIC_EFI_CLIENT_ID || ''),
+        EXPO_PUBLIC_EFI_CLIENT_SECRET: JSON.stringify(env.EXPO_PUBLIC_EFI_CLIENT_SECRET || env.EFI_CLIENT_SECRET || process.env.EXPO_PUBLIC_EFI_CLIENT_SECRET || ''),
       },
       'process.browser': true,
       'global': 'window',
     },
+
 
     resolve: {
       alias: {
