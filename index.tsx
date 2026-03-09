@@ -1,8 +1,9 @@
 
 import React from 'react';
-import { createRoot } from 'react-dom/client';
+import ReactDOM from 'react-dom/client';
 import { AppRegistry, Platform } from 'react-native';
 import App from './App';
+
 
 /**
  * Inicializador Universal JM DIGITAL
@@ -17,16 +18,23 @@ const startApp = () => {
     const rootElement = document.getElementById('root');
     if (rootElement) {
       console.log("[JM DIGITAL] Elemento #root encontrado, montando React...");
-      const root = createRoot(rootElement);
-      root.render(
-        <React.StrictMode>
-          <App />
-        </React.StrictMode>
-      );
+      // @ts-ignore - Compatibilidade React 19/Vite
+      const createRootFunc = ReactDOM.createRoot || (ReactDOM as any).default?.createRoot;
+      if (createRootFunc) {
+        const root = createRootFunc(rootElement);
+        root.render(
+          <React.StrictMode>
+            <App />
+          </React.StrictMode>
+        );
+      } else {
+        console.error("[JM DIGITAL] Erro: ReactDOM.createRoot não encontrado.");
+      }
     } else {
       console.error("[JM DIGITAL] Erro fatal: Elemento #root não encontrado no DOM.");
     }
   } else {
+
     // Ambiente Nativo (Expo Go / Mobile)
     AppRegistry.registerComponent('main', () => App);
   }
