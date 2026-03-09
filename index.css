@@ -56,15 +56,11 @@ html,
 /* Responsive Frame for Web Desktop */
 @media (min-width: 600px) {
   #root>div {
-    max-width: 500px !important;
-    margin: 40px auto !important;
-    height: calc(100% - 80px) !important;
-    border-radius: 45px !important;
-    box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.6) !important;
-    overflow: hidden !important;
-    border: 10px solid #111 !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    height: 100% !important;
+    width: 100% !important;
     position: relative !important;
-    background-color: #fff;
   }
 }
 

@@ -1,9 +1,31 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { AppRegistry, Platform } from 'react-native';
+import { AppRegistry, Platform, Alert } from 'react-native';
 import App from './App';
 
+// Web Alert Polyfill
+if (Platform.OS === 'web' || typeof document !== 'undefined') {
+  Alert.alert = (title, message, buttons) => {
+    const text = title ? `${title}\n${message || ''}` : message || '';
+    if (buttons && buttons.length > 1) {
+      // Use confirm se houver múltiplos botões
+      const result = window.confirm(text);
+      if (result) {
+        const confirmBtn = buttons.find(b => b.style !== 'cancel') || buttons[1];
+        if (confirmBtn?.onPress) confirmBtn.onPress();
+      } else {
+        const cancelBtn = buttons.find(b => b.style === 'cancel') || buttons[0];
+        if (cancelBtn?.onPress) cancelBtn.onPress();
+      }
+    } else {
+      window.alert(text);
+      if (buttons && buttons[0]?.onPress) {
+        buttons[0].onPress();
+      }
+    }
+  };
+}
 
 /**
  * Inicializador Universal JM DIGITAL
