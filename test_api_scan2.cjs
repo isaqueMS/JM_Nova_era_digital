@@ -1,6 +1,6 @@
 
 const fs = require('fs');
-const MIKWEB_TOKEN = '5C8MHVWUYI:QHKR2LADU2BXV9TIMYMWWP9JWUTULLM5';
+const MIKWEB_TOKEN = 'EXPO_PUBLIC_MIKWEB_TOKEN_PLACEHOLDER';
 const BASE_URL = 'https://api.mikweb.com.br/v1/admin';
 const HEADERS = { 'Authorization': `Bearer ${MIKWEB_TOKEN}`, 'Accept': 'application/json' };
 

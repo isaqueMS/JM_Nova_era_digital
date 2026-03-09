@@ -1,4 +1,5 @@
-const MIKWEB_TOKEN = '5C8MHVWUYI:QHKR2LADU2BXV9TIMYMWWP9JWUTULLM5';
+require('dotenv').config();
+const MIKWEB_TOKEN = process.env.EXPO_PUBLIC_MIKWEB_TOKEN || '';
 const BASE_URL = 'https://api.mikweb.com.br/v1';
 
 async function test() {

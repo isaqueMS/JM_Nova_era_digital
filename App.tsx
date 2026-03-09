@@ -16,7 +16,9 @@ import { Customer, Invoice, AppNotification } from './types';
 import { lightTheme, techTheme, TECHNICIAN_IDS } from './utils';
 import { Moon, Sun } from 'lucide-react-native';
 
-const { width } = Dimensions.get('window');
+const { width: windowWidth, height: windowHeight } = Dimensions.get('window');
+// For a better responsive feel on web, we normalize based on width but CAP it.
+const layoutWidth = Platform.OS === 'web' ? Math.min(windowWidth, 450) : windowWidth;
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -28,7 +30,7 @@ export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
 
-  const menuAnim = useRef(new Animated.Value(-width)).current;
+  const menuAnim = useRef(new Animated.Value(-layoutWidth)).current;
   const tabAnim = useRef(new Animated.Value(0)).current;
 
   const isTechnician = TECHNICIAN_IDS.includes(customer?.cpf_cnpj || '');
@@ -51,24 +53,22 @@ export default function App() {
         Animated.spring(tabAnim, {
           toValue: activeIndex,
           useNativeDriver: true,
-          tension: 100, // Increased tension for more "alive" feel
-          friction: 6, // Reduced friction for a bit more elastic bounce
+          tension: 100,
+          friction: 6,
         }),
-        // Subtle icon scale animation could be added here if needed
       ]).start();
     }
   }, [activeTab]);
 
   useEffect(() => {
-    menuAnim.setValue(-width);
+    menuAnim.setValue(-layoutWidth);
 
-    // Sync notifications periodically if identified
     let interval: NodeJS.Timeout;
     if (isIdentified && customer && !isTechnician) {
       interval = setInterval(async () => {
         const notifs = await MikWebService.getNotifications(customer.id);
         setNotifications(notifs);
-      }, 60000); // 1 minuto
+      }, 60000);
     }
     return () => interval && clearInterval(interval);
   }, [isIdentified, customer]);
@@ -76,8 +76,8 @@ export default function App() {
   const toggleMenu = (open: boolean) => {
     setIsMenuOpen(open);
     Animated.timing(menuAnim, {
-      toValue: open ? 0 : -width,
-      duration: 350,
+      toValue: open ? 0 : -layoutWidth,
+      duration: 400,
       easing: Easing.bezier(0.25, 0.1, 0.25, 1),
       useNativeDriver: true,
     }).start();
@@ -95,7 +95,6 @@ export default function App() {
         setInvoices(invoiceData);
         setNotifications(notifData);
         setIsIdentified(true);
-        // Se for técnico, força a aba técnica
         if (TECHNICIAN_IDS.includes(customerData.cpf_cnpj || '')) {
           setActiveTab('tech');
         } else {
@@ -152,17 +151,7 @@ export default function App() {
     return <AccessPortal onSearch={handleIdentify} />;
   }
 
-  // Se for técnico, usamos um layout minimalista sem tabs inferiores de cliente
-  if (isTechnician) {
-    return (
-      <SafeAreaProvider>
-        <SafeAreaView style={[styles.container, { backgroundColor: theme.background }]} edges={['top', 'bottom']}>
-          <StatusBar barStyle="light-content" backgroundColor={theme.background} />
-          {renderContent()}
-        </SafeAreaView>
-      </SafeAreaProvider>
-    );
-  }
+  const isWeb = Platform.OS === 'web';
 
   return (
     <SafeAreaProvider>
@@ -180,10 +169,18 @@ export default function App() {
             />
           )}
 
-          <Animated.View style={[styles.sideMenu, { transform: [{ translateX: menuAnim }] }]}>
+          <Animated.View style={[
+            styles.sideMenu,
+            {
+              transform: [{ translateX: menuAnim }],
+              width: layoutWidth * 0.85,
+              backgroundColor: isWeb ? 'rgba(0, 51, 153, 0.95)' : theme.primary,
+              // In production we could use Expo BlurView, but standard RN View with semi-transparency works well too
+            }
+          ]}>
             <View style={styles.menuHeader}>
               <View style={styles.menuUserBrief}>
-                <View style={styles.menuAvatar}>
+                <View style={[styles.menuAvatar, { shadowColor: '#000', shadowOpacity: 0.2, shadowRadius: 10, elevation: 5 }]}>
                   <User color="#003399" size={24} />
                 </View>
                 <View>
@@ -220,7 +217,7 @@ export default function App() {
                 <LogOut color="#fca5a5" size={20} />
                 <Text style={styles.logoutBtnText}>SAIR DA CONTA</Text>
               </TouchableOpacity>
-              <Text style={styles.versionText}>JM NOVA ERA v1.5.2 PREMIUM</Text>
+              <Text style={styles.versionText}>JM NOVA ERA PREMIUM WEB v1.6</Text>
             </View>
           </Animated.View>
         </View>
@@ -231,12 +228,12 @@ export default function App() {
               style={[
                 styles.tabIndicator,
                 {
-                  width: width / tabs.length,
+                  width: layoutWidth / tabs.length,
                   backgroundColor: theme.primary + '15',
                   transform: [{
                     translateX: tabAnim.interpolate({
                       inputRange: tabs.map((_, i) => i),
-                      outputRange: tabs.map((_, i) => (width / tabs.length) * i)
+                      outputRange: tabs.map((_, i) => (layoutWidth / tabs.length) * i)
                     })
                   }]
                 }
@@ -246,22 +243,14 @@ export default function App() {
               style={[
                 styles.tabBorderTop,
                 {
-                  width: width / tabs.length,
+                  width: layoutWidth / tabs.length,
                   backgroundColor: theme.primary,
                   borderRadius: 4,
                   transform: [
                     {
                       translateX: tabAnim.interpolate({
                         inputRange: tabs.map((_, i) => i),
-                        outputRange: tabs.map((_, i) => (width / tabs.length) * i)
-                      })
-                    },
-                    {
-                      scaleX: tabAnim.interpolate({
-                        inputRange: tabs.map((_, i) => i),
-                        outputRange: tabs.map((_, i) => 1),
-                        // Note: Complex stretch during move requires tracking delta, 
-                        // but scale animation provides a stylish touch.
+                        outputRange: tabs.map((_, i) => (layoutWidth / tabs.length) * i)
                       })
                     }
                   ]
@@ -313,7 +302,11 @@ export default function App() {
   function openWhatsApp() {
     const phone = "5571984849751";
     const msg = `Olá, gostaria de suporte para o login: ${customer?.login}`;
-    Linking.openURL(`whatsapp://send?phone=${phone}&text=${encodeURIComponent(msg)}`);
+    if (Platform.OS === 'web') {
+      window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
+    } else {
+      Linking.openURL(`whatsapp://send?phone=${phone}&text=${encodeURIComponent(msg)}`);
+    }
     toggleMenu(false);
   }
 }
@@ -337,10 +330,10 @@ const styles = StyleSheet.create({
     left: 0,
     top: 0,
     bottom: 0,
-    width: width * 0.8,
-    backgroundColor: '#003399',
     zIndex: 1001,
-    paddingTop: Platform.OS === 'ios' ? 60 : 30
+    paddingTop: Platform.OS === 'ios' ? 60 : 30,
+    borderTopRightRadius: 30,
+    borderBottomRightRadius: 30,
   },
   menuHeader: { padding: 25, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 },
   menuUserBrief: { flexDirection: 'row', alignItems: 'center', gap: 15, flex: 1 },
@@ -358,8 +351,6 @@ const styles = StyleSheet.create({
   logoutBtn: { flexDirection: 'row', alignItems: 'center', gap: 12, backgroundColor: 'rgba(239, 68, 68, 0.1)', padding: 18, borderRadius: 15 },
   logoutBtnText: { color: '#fca5a5', fontSize: 13, fontWeight: '900' },
   versionText: { color: 'rgba(255,255,255,0.2)', fontSize: 9, textAlign: 'center', marginTop: 15, fontWeight: 'bold' },
-  badge: { position: 'absolute', top: -2, right: -2, backgroundColor: '#ef4444', width: 16, height: 16, borderRadius: 8, justifyContent: 'center', alignItems: 'center' },
-  badgeText: { color: '#fff', fontSize: 9, fontWeight: 'bold' },
   tabBar: { flexDirection: 'row', height: 75, backgroundColor: '#ffffff', borderTopWidth: 1, borderTopColor: '#f1f5f9', paddingBottom: 15, position: 'relative' },
   tabItem: { flex: 1, justifyContent: 'center', alignItems: 'center', zIndex: 10 },
   tabLabel: { fontSize: 10, color: '#94a3b8', marginTop: 4 },

@@ -4,7 +4,7 @@ import { parseDate, TECHNICIAN_IDS } from '../utils';
 /**
  * MIKWEB API SERVICE v1 - JM NOVA ERA DIGITAL
  */
-export const MIKWEB_TOKEN = '5C8MHVWUYI:QHKR2LADU2BXV9TIMYMWWP9JWUTULLM5';
+export const MIKWEB_TOKEN = process.env.EXPO_PUBLIC_MIKWEB_TOKEN || '';
 const BASE_URL = 'https://api.mikweb.com.br/v1';
 
 export class MikWebService {

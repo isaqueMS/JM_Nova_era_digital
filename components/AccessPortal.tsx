@@ -192,6 +192,7 @@ const styles = StyleSheet.create({
   },
   card: {
     width: '100%',
+    maxWidth: Platform.OS === 'web' ? 400 : '100%',
     backgroundColor: '#ffffff',
     borderRadius: 32,
     padding: 30,

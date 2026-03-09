@@ -15,7 +15,8 @@ import {
   Easing,
   Dimensions,
   RefreshControl,
-  Linking
+  Linking,
+  Platform
 } from 'react-native';
 import { Customer, Invoice } from '../types';
 import { MikWebService } from '../services/mikweb';
@@ -317,6 +318,15 @@ const Dashboard: React.FC<DashboardProps> = ({ customer, invoices, theme, onNavi
             <QuickLink icon={MessageSquare} label="Suporte" color={theme.secondary} theme={theme} onPress={() => onNavigate('support')} />
             <QuickLink icon={Building} label="Contatos" color={theme.primary} theme={theme} onPress={() => setShowContactsModal(true)} />
             <QuickLink icon={Rocket} label="Planos" color="#a855f7" theme={theme} onPress={() => setShowPlansModal(true)} />
+            <QuickLink icon={Phone} label="Suporte Web" color="#22c55e" theme={theme} onPress={() => {
+              const phone = "5571984849751";
+              const msg = `Olá, gostaria de suporte para o login: ${customer?.login}`;
+              if (Platform.OS === 'web') {
+                window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
+              } else {
+                Linking.openURL(`whatsapp://send?phone=${phone}&text=${encodeURIComponent(msg)}`);
+              }
+            }} />
           </View>
 
           {!showBiometricSetup && !TECHNICIAN_IDS.includes(customer?.cpf_cnpj || '') && (
@@ -619,7 +629,7 @@ const createStyles = (theme: Theme) => StyleSheet.create({
   content: { marginTop: 110, paddingHorizontal: 20 },
   sHead: { flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 20 },
   sTitle: { fontSize: 11, fontWeight: '900', color: theme.text },
-  grid: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' },
+  grid: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'flex-start', gap: (width - 40) * 0.04 },
   biometricStatusCard: { flexDirection: 'row', alignItems: 'center', gap: 10, backgroundColor: theme.success + '10', padding: 15, borderRadius: 15, marginTop: 10, borderWidth: 1, borderColor: theme.success + '30' },
   biometricStatusText: { color: theme.success, fontSize: 10, fontWeight: 'bold', flex: 1 },
   mBack: { flex: 1, backgroundColor: 'rgba(0,0,0,0.85)', justifyContent: 'center', padding: 20 },

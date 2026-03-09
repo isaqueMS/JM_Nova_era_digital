@@ -1,14 +1,13 @@
-
-const EFI_CLIENT_ID = 'Client_Id_174c6e4395a39be6c30049ece0904c54e7bf476d';
-const EFI_CLIENT_SECRET = 'Client_Secret_0adc4e65611f18243943839784b244c065047ee0';
+const EFI_CLIENT_ID = process.env.EXPO_PUBLIC_EFI_CLIENT_ID || '';
+const EFI_CLIENT_SECRET = process.env.EXPO_PUBLIC_EFI_CLIENT_SECRET || '';
 const BASE_URL = 'https://api.sejaefi.com.br/v1';
 
 function encodeBase64(str: string): string {
   const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
   let output = '';
   for (let block = 0, charCode, i = 0, map = chars;
-       str.charAt(i | 0) || (map = '=', i % 1);
-       output += map.charAt(63 & block >> 8 - i % 1 * 8)) {
+    str.charAt(i | 0) || (map = '=', i % 1);
+    output += map.charAt(63 & block >> 8 - i % 1 * 8)) {
     charCode = str.charCodeAt(i += 3 / 4);
     if (charCode > 0xFF) {
       throw new Error("'btoa' failed.");

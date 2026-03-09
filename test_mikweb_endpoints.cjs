@@ -1,5 +1,5 @@
 // Test main MikWeb API endpoint variations for online customer status
-const token = '5C8MHVWUYI:QHKR2LADU2BXV9TIMYMWWP9JWUTULLM5';
+const token = 'EXPO_PUBLIC_MIKWEB_TOKEN_PLACEHOLDER';
 const base = 'https://api.mikweb.com.br/v1/admin';
 const headers = { 'Authorization': 'Bearer ' + token, 'Accept': 'application/json' };
 const fs = require('fs');
