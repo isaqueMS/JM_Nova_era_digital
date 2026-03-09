@@ -4,17 +4,21 @@ import { parseDate, TECHNICIAN_IDS } from '../utils';
 /**
  * MIKWEB API SERVICE v1 - JM NOVA ERA DIGITAL
  */
-export const MIKWEB_TOKEN = process.env.EXPO_PUBLIC_MIKWEB_TOKEN || '';
 const BASE_URL = 'https://api.mikweb.com.br/v1';
+export const MIKWEB_TOKEN = process.env.EXPO_PUBLIC_MIKWEB_TOKEN || '';
 
 export class MikWebService {
+
+
   static getHeaders() {
+    const token = process.env.EXPO_PUBLIC_MIKWEB_TOKEN || '';
     return {
-      'Authorization': `Bearer ${MIKWEB_TOKEN}`,
+      'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json',
       'Accept': 'application/json'
     };
   }
+
 
   /**
    * Envia um comando para o MikroTik através da Bridge Local Node.js (Proxy mk-bridge.js)

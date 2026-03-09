@@ -20,9 +20,10 @@ export default defineConfig(({ mode }) => {
       react(),
       {
         name: 'fix-expo-jsx',
-        async transform(code, id) {
+        enforce: 'pre',
+        async transform(code: string, id: string) {
           if (id.includes('node_modules') && id.endsWith('.js')) {
-            if (code.includes('(<') || code.includes('<NativeLinearGradient')) {
+            if (code.includes('(<') || code.includes('<NativeLinearGradient') || code.includes('<Path')) {
               const { code: transformedCode } = await transform(code, {
                 loader: 'jsx',
                 format: 'esm',
@@ -38,22 +39,15 @@ export default defineConfig(({ mode }) => {
         },
       },
     ],
-    define: {
-      __DEV__: isProd ? 'false' : 'true',
-      'process.env': {
-        NODE_ENV: JSON.stringify(mode),
-        GEMINI_API_KEY: JSON.stringify(env.EXPO_PUBLIC_GEMINI_API_KEY || env.GEMINI_API_KEY || process.env.EXPO_PUBLIC_GEMINI_API_KEY || ''),
-        EXPO_PUBLIC_GEMINI_API_KEY: JSON.stringify(env.EXPO_PUBLIC_GEMINI_API_KEY || env.GEMINI_API_KEY || process.env.EXPO_PUBLIC_GEMINI_API_KEY || ''),
-        EXPO_PUBLIC_MIKWEB_TOKEN: JSON.stringify(env.EXPO_PUBLIC_MIKWEB_TOKEN || env.MIKWEB_TOKEN || process.env.EXPO_PUBLIC_MIKWEB_TOKEN || ''),
-        EXPO_PUBLIC_EFI_CLIENT_ID: JSON.stringify(env.EXPO_PUBLIC_EFI_CLIENT_ID || env.EFI_CLIENT_ID || process.env.EXPO_PUBLIC_EFI_CLIENT_ID || ''),
-        EXPO_PUBLIC_EFI_CLIENT_SECRET: JSON.stringify(env.EXPO_PUBLIC_EFI_CLIENT_SECRET || env.EFI_CLIENT_SECRET || process.env.EXPO_PUBLIC_EFI_CLIENT_SECRET || ''),
-      },
-      'process.browser': true,
-      'global': 'window',
-    },
+
+
+    define: {},
+
+
 
 
     resolve: {
+
       alias: {
         '@': path.resolve(__dirname, '.'),
         'react-native': 'react-native-web',
